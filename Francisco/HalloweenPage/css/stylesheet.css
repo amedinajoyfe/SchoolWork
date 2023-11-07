@@ -1,0 +1,131 @@
+@font-face {
+    font-family: Eater;
+    src: url(../assets/fonts/Eater-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url(../assets/fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Nosifer;
+    src: url(../assets/fonts/Nosifer-Regular.ttf);
+}
+
+.eater_font_big{
+    font-family: Eater;
+    color: #FFFFFF;
+    font-size: 300%;
+    line-height: 6vh;
+}
+.eater_font{
+    font-family: Eater;
+    color: #FFFFFF;
+}
+
+.montserrat_font{
+    font-family: 'Montserrat';
+    color: #FFFFFF;
+}
+.montserrat_font_small{
+    font-family: 'Montserrat';
+    color: #FFFFFF;
+    font-size: 120%;
+}
+
+.nosifer_font_small{
+    font-family: 'Nosifer';
+    color: #FFFFFF;
+    font-size: small;
+}
+
+.active *{
+    color: #FF5003;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+li{
+    list-style: none;
+    display: inline-block;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+li a:hover{
+    color: #FF5003;
+}
+
+.background_image{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.clase1{
+    background-color: blue;
+}
+
+#witch_text{
+    position: absolute; 
+    top: 20%; 
+    left: 50%; 
+    text-align: center;
+}
+
+#orange_bats{
+    position: absolute; 
+    bottom: 0px; 
+    right: 0px;
+}
+
+#evil_pumpkin{
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+}
+
+#let_halloween_begin{
+    background-color: #040A10;
+    height: 50vh;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+}
+
+.orange_letters{
+    color: #FF5003;
+}
+
+button{
+    border-radius: 20px;
+    border-color: #FF5003;
+    width: 160px;
+    height: 35px;
+    font-family: Nosifer;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.filled_button{
+    color: #FFFFFF;
+    background-color: #FF5003;
+}
+
+.filled_button:hover{
+    background-color: #FF7003;
+}
+
+.empty_button{
+    color: #FF5003;
+    background-color: transparent;
+}
+.empty_button:hover{
+    color: #FFFFFF;
+    background-color: #FF5003;
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;joyfe.joyfeSpring.secondaryClasses.Tasks&apos; to &apos;Task&apos;&#x0D;&#x0A;- Original project: &apos;demo&apos;&#x0D;&#x0A;- Original element: &apos;joyfe.joyfeSpring.secondaryClasses.Tasks&apos;&#x0D;&#x0A;- Renamed element: &apos;joyfe.joyfeSpring.secondaryClasses.Task&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Tasks&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;joyfe.joyfeSpring.secondaryClasses{Tasks.java[Tasks" matchStrategy="1" name="Task" qualified="false" references="true" similarDeclarations="false" stamp="1698259170319" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,43 @@
+package joyfe.joyfeSpring.apiController;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import joyfe.joyfeSpring.secondaryClasses.Task;
+
+@RestController
+@RequestMapping("/myApi")
+public class apiController {
+	
+	List<Task> taskList = new ArrayList<>();
+	
+	
+	public void addTask(Task newTask) {
+		taskList
+	}
+	
+	public Task getTaskById() {
+		return null;
+	}
+	
+	public void updateTask() {
+		
+	}
+	
+	public void deleteTask() {
+		
+	}
+	
+	@GetMapping("/hola")
+	public String saludar() {
+		return "Hola";
+	}
+	
+	private long generateId() {
+		return taskList == null? 0:taskList.size();
+	}
+}

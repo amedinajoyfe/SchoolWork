@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <script src="js/jquery.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <form action="">
+        <label for="tbName">Nombre</label>
+        <input type="text" name="name" id="tbName" placeholder="Introduzca nombre" style="margin-top: 10px;">
+        <span class="hidden red" id="nameErrorEmpty">El nombre es obligatorio</span>
+        <br>
+        <label for="tbEmail">Email</label>
+        <input type="text" name="email" id="tbEmail" placeholder="Introduzca email" style="margin-top: 10px;">
+        <span class="hidden red" id="emailErrorEmpty">El email es obligatorio</span>
+        <span class="hidden red" id="emailErrorFormat">El email debe ser un formato de correo válido</span>
+        <br>
+        <label for="tbComentaries">Comentarios</label>
+        <input type="text" name="comentaries" id="tbComentaries" placeholder="Introduzca comentarios" style="margin-top: 10px;">
+        <span class="hidden red" id="comentaryErrorEmpty">Los comentarios son obligatorios</span>
+        <span class="hidden red" id="comentaryErrorLength">Los comentarios superan el límite de 50 caracteres</span>
+        <br>
+        <label for="tbPassword">Contraseña</label>
+        <input type="password" name="password" id="tbPassword" placeholder="Introduzca contraseña" style="margin-top: 10px;">
+        <span class="hidden red" id="passwordErrorFormat">La contraseña debe tener una longitud mínima de 6 caracteres, y contener al menos una letra minúscula, una letra mayúscula y un dígito</span>
+        <br>
+        <input type="submit" value="Completar" style="margin-top: 10px; margin-left: 70px;" id="btnSend">
+    </form>
+</body>
+</html>
