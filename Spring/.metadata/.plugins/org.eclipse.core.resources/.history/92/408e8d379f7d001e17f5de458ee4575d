@@ -1,0 +1,12 @@
+package joyfe.joyfeSpring.exceptionClasses;
+
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(Htt)
+public class TaskNotFound extends RuntimeException {
+	private static final long serialVersionUID = 1L;
+
+	public TaskNotFound(Long id) {
+		super("No se ha encontrado una tarea con ID " + id);
+	}
+}

@@ -1,0 +1,3 @@
+joyfe.openapi.dev-url = http://localhost:8080
+joyfe.openapi.prod-url = http://joyfe.com
+test.try1 = http://localhost:8080

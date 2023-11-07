@@ -1,0 +1,9 @@
+package joyfe.joyfeSpring.exceptionClasses;
+
+public class TaskNotFound extends RuntimeException {
+	private static final long serialVersionUID = 1L;
+
+	public TaskNotFound(Long id) {
+		super("No se ha encontrado una tarea con ID " + id);
+	}
+}
