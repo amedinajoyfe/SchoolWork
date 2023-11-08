@@ -23,6 +23,6 @@ public class ApiDescription {
 	public OpenAPI myOpenAPI() {
 		Server devServer = new Server();
 		devServer.setUrl(devUrl);
-		return new OpenAPI().servers(List.of(devServer)).info(new Info().description("API REST JOYFE DEV").termsOfService("Términos del servicio").contact(new Contact().name("Colegio Joyfe").email("correo@correo.es")));
+		return new OpenAPI().servers(List.of(devServer)).info(new Info().title("Titulo personalizado").description("API REST JOYFE DEV").termsOfService("Términos del servicio").contact(new Contact().name("Colegio Joyfe").email("correo@correo.es")));
 	}
 }
