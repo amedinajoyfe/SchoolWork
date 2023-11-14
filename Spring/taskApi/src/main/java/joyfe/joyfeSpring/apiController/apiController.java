@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,34 +18,48 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.websocket.OnError;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import joyfe.joyfeSpring.exceptionClasses.TaskNotFound;
 import joyfe.joyfeSpring.secondaryClasses.Task;
 
+@Tag(name = "Tareas 1", description = "Documentacion de la api")
 @RestController
-@RequestMapping("/myApi")
+@RequestMapping("/${api-version}/${apiName}")
 public class apiController {
 	
 	List<Task> taskList = new ArrayList<>();
-	
-	@PostMapping(path = "/tasks", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@CrossOrigin
+	@PostMapping(path = "/${endpoint}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Task> addTask(@RequestBody @Valid Task newTask) throws URISyntaxException {
 		newTask.setId(generateId());
 		taskList.add(newTask);
 		return ResponseEntity.created(new URI("/tasks/1")).body(newTask);
 	}
-	
-	@GetMapping(path = "/tasks")
+
+	@CrossOrigin
+	@GetMapping(path = "/${endpoint}")
 	public String salute() {
 		return "Pagina principal de la api";
 	}
-	
-	@GetMapping(path = "/tasks/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@CrossOrigin
+	@Operation(summary = "Recibir tarea", description = "Este endpoint te permite obtener la tarea cuyo Id sea introducido")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Tarea encontrada"),
+			@ApiResponse(responseCode = "400", description = "Error inesperado"),
+			@ApiResponse(responseCode = "404", description = "Tarea no encontrada")
+	})
+	@GetMapping(path = "/${endpoint}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Task> getTaskById(@PathVariable long id) {
 		return ResponseEntity.ok(taskList.stream().filter(task -> task.getId() == id).findFirst().orElseThrow(() -> new TaskNotFound(id)));
 	}
-	
-	@PutMapping(path = "/tasks/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@CrossOrigin
+	@PutMapping(path = "/${endpoint}/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String updateTask(@PathVariable long id, @RequestBody @Valid Task newTask) {
 		if(taskList == null || id > taskList.size() || id < 1)
 			return "Esa tarea no existe";
@@ -53,7 +68,7 @@ public class apiController {
 		return "La tarea ha sido actualizada";
 	}
 	
-	@DeleteMapping(path = "/tasks/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(path = "/${endpoint}/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String deleteTask(@PathVariable long id) {
 		if(taskList == null || id > taskList.size() || id < 1)
 			return "Esa tarea no existe";

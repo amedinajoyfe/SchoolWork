@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cliente web 1</title>
+    <link rel="shortcut icon" href="#">
+</head>
+<body>
+    <h1>Cliente Web 1</h1>
+    <button onclick="Solicitud()">Get Data</button>
+    <div id="resultado"></div>
+    <script>
+        function Solicitud(){
+            fetch('http://localhost:8080/api-joyfe/v1/myApi/tasks', {
+        method: 'POST',
+        body: JSON.stringify( {"name":"Tarea1",
+            "description":"This is this task's description",
+            "deadline":"12/07/2023"}),
+        contentType:'application/json'
+})
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("resultado").innerHTML = data.name + " encontrada";
+            }).catch(error => console.error('Error: ', error));
+        }
+    </script>
+</body>
+</html>
