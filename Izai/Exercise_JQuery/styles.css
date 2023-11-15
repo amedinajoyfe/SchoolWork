@@ -1,0 +1,23 @@
+[id*=p]{
+    border: 2px black solid;
+    transition: 0.2s linear;
+}
+
+#noticiero{
+    display: flex;
+}
+.noticia{
+    margin-left: 10px;
+    outline: 2px solid black;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.headers{
+    color: green;
+}
+
+.element{
+    color: red;
+}

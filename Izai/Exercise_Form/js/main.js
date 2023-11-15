@@ -34,7 +34,7 @@ $(document).ready(() => {
     $('#tbPassword').on('focusout', event => {
         $('#passwordErrorFormat').addClass('hidden');
 
-        if(!($('#tbPassword').val().match(new RegExp("(?=.{6,})(?=.*[A-Z])(?=.*[0-9])")))){
+        if(!($('#tbPassword').val().match(new RegExp("(?=.{6,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])")))){
             $('#passwordErrorFormat').removeClass('hidden');
         }
     });
