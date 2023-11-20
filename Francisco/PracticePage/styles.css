@@ -84,3 +84,18 @@ header img{
     list-style: none;
     margin-right: 4em;
 }
+
+#myFlexBox{
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    height: 400px;
+    outline: 2px black solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.flexBoxSon{
+    background-color: tomato;
+}
