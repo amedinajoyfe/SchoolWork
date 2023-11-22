@@ -33,24 +33,23 @@ public class SubjectService {
 	public Task getTaskById(long id) {
 		return taskList.stream().filter(task -> task.getId() == id).findFirst().orElse(null);
 	}
-	public String updateTask(long id, Task newTask) {
+	public boolean updateTask(long id, Task newTask) {
 		if(taskList == null || id > taskList.size() || id < 1)
-			return "Esa tarea no existe";
+			return false;
 		newTask.setId(id);
 		taskList.set((int)(id - 1), newTask);
-		return "La tarea ha sido actualizada";
+		return true;
 	}
-	public String deleteTask(long id) {
+	public boolean deleteTask(long id) {
 		if(taskList == null || id > taskList.size() || id < 1)
-			return "Esa tarea no existe";
+			return false;
 		taskList.set((int)(id - 1), new Task(true));
-		return "La tarea ha sido borrada";
+		return true;
 	}
 
-	public Subject addSubject(Subject newSubject) {
+	public void addSubject(Subject newSubject) {
 		newSubject.setId(generateIdSubject());
 		subjectList.add(newSubject);
-		return newSubject;
 	}
 	public Subject getSubjectById(long id) {
 		return subjectList.stream().filter(subject -> subject.getId() == id).findFirst().orElse(null);
@@ -60,18 +59,18 @@ public class SubjectService {
 		filteredTaskList = taskList.stream().filter(task -> task.getSubjectId() == id).collect(Collectors.toList());;
 		return filteredTaskList;
 	}
-	public String updateSubject(long id, Subject newSubject) {
+	public boolean updateSubject(long id, Subject newSubject) {
 		if(subjectList == null || id > subjectList.size() || id < 1)
-			return "Esa materia no existe";
+			return false;
 		newSubject.setId(id);
 		subjectList.set((int)(id - 1), newSubject);
-		return "La materia ha sido actualizada";
+		return true;
 	}
-	public String deleteSubject(long id) {
+	public boolean deleteSubject(long id) {
 		if(subjectList == null || id > subjectList.size() || id < 1)
-			return "Esa materia no existe";
+			return false;
 		subjectList.set((int)(id - 1), new Subject());
-		return "La materia ha sido borrada";
+		return true;
 	}	
 	
 	private long generateIdTask() {
