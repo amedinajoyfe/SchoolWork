@@ -1,13 +1,19 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-import "./Usuario.sol";
+import "./User.sol";
+import "./WhiteList.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol";
+
 contract Register{
+    WhiteList myWhiteList = new WhiteList();
+    IERC20 immutable myToken;
 
     mapping(address => Usuario) dataToUser;
     address[] activeUsers;
     address immutable creator;
+    uint constant decimals = 18;
 
-    constructor() {
+    constructor(IERC20 _myToken) {
         creator = msg.sender;
         
         Usuario user = new Usuario();
@@ -16,10 +22,13 @@ contract Register{
 
         dataToUser[msg.sender] = user;
         activeUsers.push(msg.sender);
+
+        myToken = _myToken;
     }
 
     error tooMuchRetrieved(uint balance, uint maxWithdraw);
 
+    event CrearUsuario(address _sender);
     event ActualizarEdad(address _sender, uint _age);
     event ActualizarNombre(address _sender, string _name);
     event RetirarSaldoEspecifico(address _receiver, uint _amount);
@@ -28,7 +37,6 @@ contract Register{
         require(msg.sender == creator);
         _;
     }
-
     modifier ownerOrUser{
         require(msg.sender == creator || findInUsers(msg.sender));
         _;
@@ -38,21 +46,35 @@ contract Register{
         require(bytes(_nombre).length > 0);
         _;
     }
-
     modifier noNegativeAge(uint _edad){
         require(_edad >= 0);
         _;
     }
 
-    modifier noEmptyAddress{
-        require(msg.sender != address(0));
+    modifier requirePayment{
+        require(myToken.transferFrom(msg.sender, address(this), 5 * 10 ** (decimals - 1)));
         _;
+    }
+    modifier requireWhiteListed(){
+        require(myWhiteList.checkWhiteList(msg.sender));
+        _;
+    }
+    modifier checkBalanceOnFinish(){
+        _;
+        if(myToken.balanceOf(msg.sender) == 0){
+            myWhiteList.removeFromWhiteList(msg.sender);
+        }
     }
 
     receive() external payable {
-        require(msg.value == 0.025 ether, "No ha introducido suficiente cantidad de ether");
-        require(dataToUser[msg.sender].getDiscount() > 0, "Ya ha recibido el descuento");
-        dataToUser[msg.sender].applyDiscount();
+        myToken.transfer(msg.sender, 10 * 10 ** decimals);
+        myWhiteList.addToWhiteList(msg.sender);
+    }
+
+    function addToWhiteListTest() public{
+        myWhiteList.addToWhiteList(msg.sender); //Testing functions
+    }function removeFromWhiteListTest() public{
+        myWhiteList.removeFromWhiteList(msg.sender);
     }
 
     function findInUsers(address _address) public view returns(bool) {
@@ -64,27 +86,27 @@ contract Register{
         }
         return false;
     }
-    function createUser() public{
+    function createUser() public requirePayment requireWhiteListed checkBalanceOnFinish{
         require(!findInUsers(msg.sender));
 
         Usuario user = new Usuario();
         dataToUser[msg.sender] = user;
         activeUsers.push(msg.sender);
+        emit CrearUsuario(msg.sender);
     }
-    function registrarNombre(string memory _nombre) public payable ownerOrUser noEmptyName(_nombre){
-        require(msg.value == 0.05 ether || (msg.value == 0.025 ether && dataToUser[msg.sender].getDiscount() > 0), "El valor de la transaccion no es correcto");
+    function registrarNombre(string memory _nombre) public ownerOrUser noEmptyName(_nombre) requirePayment requireWhiteListed checkBalanceOnFinish{
         dataToUser[msg.sender].setNombre(_nombre);
         emit ActualizarNombre(msg.sender, _nombre);
     }
-    function registrarEdad(uint16 _edad) public ownerOrUser noNegativeAge(_edad){
+    function registrarEdad(uint16 _edad) public ownerOrUser noNegativeAge(_edad) requirePayment requireWhiteListed checkBalanceOnFinish{
         dataToUser[msg.sender].setEdad(_edad);
         emit ActualizarEdad(msg.sender, _edad);
     }
 
-    function verNombre() public ownerOrUser view returns(string memory){
+    function verNombre() public ownerOrUser view requireWhiteListed returns(string memory) {
         return dataToUser[msg.sender].getNombre();
     }
-    function verEdad() public ownerOrUser view returns(uint){
+    function verEdad() public ownerOrUser view requireWhiteListed returns(uint) {
         return dataToUser[msg.sender].getEdad();
     }
     function verAddress() public view returns(address){
@@ -97,6 +119,7 @@ contract Register{
     function changeUserEdad(address _address, uint16 _edad) public onlyOwner{
         dataToUser[_address].setEdad(_edad);
     }
+
     function retrieveMoney(address payable _address, uint _amount) public onlyOwner{
         if(_amount >= (address(this).balance/3))
         {

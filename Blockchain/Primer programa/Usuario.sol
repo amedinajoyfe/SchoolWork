@@ -4,7 +4,6 @@ pragma solidity ^0.8.0;
 contract Usuario{
     uint edad;
     string nombre;
-    uint oneTimeDiscount;
 
     function setEdad (uint _edad) public {
         edad = _edad;
@@ -20,16 +19,8 @@ contract Usuario{
         return nombre;
     }
 
-    function applyDiscount () public {
-        oneTimeDiscount += 1;
-    }
-    function getDiscount () public view returns (uint){
-        return oneTimeDiscount;
-    }
-
     constructor () {
         edad = 0;
         nombre = "";
-        oneTimeDiscount = 0;
     }
 }
