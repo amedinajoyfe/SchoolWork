@@ -132,9 +132,21 @@ contract GamesMiniverse {
         emit UserRegistered(msg.sender);
     }
 
+    /// @dev Permite consultar la lista de juegos
+    function gamesList() public view returns(Game[] memory) {
+        return gameList;
+    }
+
+    /// @dev Permite buscar el nombre de un juego por su id
+    /// @param _gameId La id del juego que se quiere buscar
+    function getGameName(uint _gameId) public view returns(string memory) {
+        return findGame(_gameId).name;
+    }
+
     /// @dev Permite a un usuario comprobar si está registrado o no.
-    function checkInList() public view returns(bool) {
-        return findUser(msg.sender);
+    /// @param _user La dirección del usuario que se quiere buscar
+    function checkInList(address _user) public view returns(bool) {
+        return findUser(_user);
     }
 
     /// @dev Permite ver el nombre del contrato, podría ser una variable pública pero quería incluir una función "pure".

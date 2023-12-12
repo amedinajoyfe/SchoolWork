@@ -1,4 +1,4 @@
-Juego https://mumbai.polygonscan.com/address/0x6b9d1498bf1e8d0cf44e379f3d209aeaf70d028e
+Juego https://mumbai.polygonscan.com/address/0xf13ed3441cc146b6d426a305d1ac52b19235e705
 Token https://mumbai.polygonscan.com/address/0x45f45c3f6a5fbe28f182398fc4f9fc0cb65d7fe9
 
 Frase recuperación:
