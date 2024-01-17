@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="js/bootstrap.bundle.js" defer></script>
+  </head>
+  <body>
+    <form class="container py-3 text-center" style="max-width: 400px;">
+      <div class="row g-3 pb-2">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+        </div>
+        <div class="col-12">
+          <input type="text" class="form-control" placeholder="Email address" aria-label="Email address">
+        </div>
+        <div class="col-12">
+          <input type="password" class="form-control" placeholder="Password" aria-label="Password">
+        </div>
+      </div>
+      <div class="row g-2 mb-4">
+        <div class="col">
+          <input class="form-check-input" type="checkbox" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Subscribe to our newsletter
+          </label>
+        </div>
+        <div class="col-12 d-grid">
+          <button class="btn btn-primary" type="button">Button</button>
+        </div>
+      </div>
+      <div class="row justify-content-md-center g-2">
+        <div class="col-12">
+          <h6>or sign up with:</h6>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary rounded-circle" style="width: 40px; height: 40px;" type="button"><i class="bi bi-facebook"></i></button>
+          <button class="btn btn-primary rounded-circle" style="width: 40px; height: 40px;" type="button"><i class="bi bi-twitter"></i></button>
+          <button class="btn btn-primary rounded-circle" style="width: 40px; height: 40px;" type="button"><i class="bi bi-google"></i></button>
+          <button class="btn btn-primary rounded-circle" style="width: 40px; height: 40px;" type="button"><i class="bi bi-github"></i></button>
+        </div>
+      </div>
+    </form>
+    <hr>
+    <form class="container" style="max-width: 450px;">
+      <div class="row mb-3align-items-start">
+        <div class="col d-flex flex-column">
+          <button class="btn btn-primary rounded-pill" style="min-height: 100%;"><span class="bi bi-credit-card"></span> Credit Card</button>
+        </div>
+        <div class="col d-flex flex-column">
+          <button class="btn btn-secondary rounded-pill" style="height: 100%;"><span class="bi bi-paypal"></span> PayPal</button>
+        </div>
+        <div class="col d-flex flex-column">
+          <button class="btn btn-secondary rounded-pill" style="min-height: 100%;"><span class="bi bi-bank"></span> Bank Transfer</button>
+        </div>
+      </div>
+      <div class="row g-2 my-3">
+        <div class="col-12">
+          <label for="txtName" class="mb-2">Full name (on the card)</label>
+          <input type="text" class="form-control" placeholder="First name" id="txtName">
+        </div>
+        <div class="col-12">
+          <label for="txtName" class="mb-2">Card number</label>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Card number" id="txtName">
+            <div class="input-group-text"><span class="bi bi-credit-card"> <span class="bi bi-credit-card"> <span class="bi bi-credit-card"></span></div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="row g-2">
+        <div class="col-8">
+            <label for="inputMonth" class="mb-2">Expiration</label>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="MM" id="inputMonth">
+              <input type="text" class="form-control" placeholder="YY" id="inputYear">
+            </div>
+        </div>
+        <div class="col-4">
+            <label for="inputCode" class="form-label">CVV <span class="bi bi-question-circle-fill"></span></label>
+            <input type="text" class="form-control" id="inputCode">
+        </div>
+        <div class="col-12 d-grid">
+          <button class="btn btn-primary rounded-pill">Confirm</button>
+        </div>
+      </div>
+      
+    </form>
+  </body>
+</html>

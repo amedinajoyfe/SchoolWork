@@ -1,0 +1,19 @@
+{
+  "name": "web3-project",
+  "version": "1.0.0",
+  "description": "first node example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node index.js"
+  },
+  "keywords": [
+    "node",
+    "web3"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
