@@ -1,0 +1,84 @@
+feb 25, 2024 6:07:08 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado: CSVRecord [comment='null', recordNumber=97, values=[96, mansion, 376.0, 21]]
+feb 25, 2024 6:07:08 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado: CSVRecord [comment='null', recordNumber=98, values=[97, casa de madera, 500.0, 72]]
+feb 25, 2024 6:07:08 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado: CSVRecord [comment='null', recordNumber=99, values=[98, granja, 371.0, 70]]
+feb 25, 2024 6:07:08 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado: CSVRecord [comment='null', recordNumber=100, values=[99, establo, 104.0, 46]]
+feb 25, 2024 6:07:08 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado: CSVRecord [comment='null', recordNumber=101, values=[100, invernadero, 187.0, 63]]
+feb 25, 2024 6:07:08 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado: CSVRecord [comment='null', recordNumber=102, values=[37, casa de madera, 227.0, 8]]
+feb 25, 2024 6:07:24 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado: CSVRecord [comment='null', recordNumber=97, values=[96, mansion, 376.0, 21]]
+feb 25, 2024 6:07:24 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado: CSVRecord [comment='null', recordNumber=98, values=[97, casa de madera, 500.0, 72]]
+feb 25, 2024 6:07:24 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado: CSVRecord [comment='null', recordNumber=99, values=[98, granja, 371.0, 70]]
+feb 25, 2024 6:07:24 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado: CSVRecord [comment='null', recordNumber=100, values=[99, establo, 104.0, 46]]
+feb 25, 2024 6:07:24 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado: CSVRecord [comment='null', recordNumber=101, values=[100, invernadero, 187.0, 63]]
+feb 25, 2024 6:07:24 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado: CSVRecord [comment='null', recordNumber=102, values=[37, casa de madera, 227.0, 8]]
+feb 25, 2024 6:21:07 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=97, values=[96, mansion, 376.0, 21]]
+feb 25, 2024 6:21:07 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=98, values=[97, casa de madera, 500.0, 72]]
+feb 25, 2024 6:21:07 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=99, values=[98, granja, 371.0, 70]]
+feb 25, 2024 6:21:07 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=100, values=[99, establo, 104.0, 46]]
+feb 25, 2024 6:21:07 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=101, values=[100, invernadero, 187.0, 63]]
+feb 25, 2024 6:21:07 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=102, values=[37, casa de madera, 227.0, 8]]
+feb 25, 2024 6:23:30 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=97, values=[96, mansion, 376.0, 21]]
+feb 25, 2024 6:23:30 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=98, values=[97, casa de madera, 500.0, 72]]
+feb 25, 2024 6:23:30 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=99, values=[98, granja, 371.0, 70]]
+feb 25, 2024 6:23:30 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=100, values=[99, establo, 104.0, 46]]
+feb 25, 2024 6:23:30 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=101, values=[100, invernadero, 187.0, 63]]
+feb 25, 2024 6:23:31 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=102, values=[37, casa de madera, 227.0, 8]]
+feb 25, 2024 6:25:14 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=97, values=[96, mansion, 376.0, 21]]
+feb 25, 2024 6:25:14 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=98, values=[97, casa de madera, 500.0, 72]]
+feb 25, 2024 6:25:14 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=99, values=[98, granja, 371.0, 70]]
+feb 25, 2024 6:25:14 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=100, values=[99, establo, 104.0, 46]]
+feb 25, 2024 6:25:14 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=101, values=[100, invernadero, 187.0, 63]]
+feb 25, 2024 6:25:14 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=102, values=[37, casa de madera, 227.0, 8]]
+feb 25, 2024 6:27:13 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=97, values=[96, mansion, 376.0, 21]]
+feb 25, 2024 6:27:13 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=98, values=[97, casa de madera, 500.0, 72]]
+feb 25, 2024 6:27:13 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=99, values=[98, granja, 371.0, 70]]
+feb 25, 2024 6:27:13 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=100, values=[99, establo, 104.0, 46]]
+feb 25, 2024 6:27:13 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=101, values=[100, invernadero, 187.0, 63]]
+feb 25, 2024 6:27:13 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=102, values=[37, casa de madera, 227.0, 8]]
+feb 25, 2024 6:29:37 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=97, values=[96, mansion, 376.0, 21]]
+feb 25, 2024 6:29:37 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=98, values=[97, casa de madera, 500.0, 72]]
+feb 25, 2024 6:29:37 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=99, values=[98, granja, 371.0, 70]]
+feb 25, 2024 6:29:37 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=100, values=[99, establo, 104.0, 46]]
+feb 25, 2024 6:29:37 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=101, values=[100, invernadero, 187.0, 63]]
+feb 25, 2024 6:29:37 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarDuplicado
+ADVERTENCIA: Duplicado encontrado en entidad 'construcciones': CSVRecord [comment='null', recordNumber=102, values=[37, casa de madera, 227.0, 8]]

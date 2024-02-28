@@ -33,13 +33,14 @@
     <fullyQualifiedTypeName name="jakarta.websocket.OnError"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
     <fullyQualifiedTypeName name="io.swagger.v3.oas.models.OpenAPI"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
     <fullyQualifiedTypeName name="joyfe.joyfeSpring.apiController.ApiDescription"/>
-    <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="io.swagger.v3.oas.models.servers.ServerVariables"/>
     <fullyQualifiedTypeName name="io.swagger.v3.oas.annotations.tags.Tag"/>
     <fullyQualifiedTypeName name="io.swagger.v3.oas.models.servers.Server"/>
     <fullyQualifiedTypeName name="io.swagger.v3.oas.models.info.Info"/>
     <fullyQualifiedTypeName name="joyfe.joyfeSpring.enums.Strings"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.lang.Thread"/>
 </qualifiedTypeNameHistroy>

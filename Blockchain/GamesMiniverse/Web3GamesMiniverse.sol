@@ -23,17 +23,19 @@ contract GamesMiniverse {
     string private constant contractName = "GamesMiniverse";
 
     /// @dev Lista de usuarios registrados.
-    address[] private userList;
+    mapping(address => User) private userList;
+    HighScore[] private highScoreList;
 
-    /// @dev Lista de juegos disponibles.
-    Game[] private gameList;
+    struct HighScore{
+        uint id_game;
+        uint score;
+    }
 
-    // Estructura para Game
-    struct Game {
-        uint id;
-        string name;
-        uint price;
-        uint prize;
+    // Estructura para Usuarios
+    struct User {
+        uint[] achievements;
+        string username;
+        uint[] highScoreReferences;
     }
 
     /// Constructor
@@ -71,13 +73,16 @@ contract GamesMiniverse {
     /// Eventos
 
     /// @dev Este evento se emite cuando un usuario comienza a jugar.
-    /// @param name El nombre del juego iniciado.
+    /// @param gameId La id del juego iniciado.
     /// @param user La dirección del usuario.
-    event GameStarted(string name, address user);
+    event GameStarted(int gameId, address user);
+
+    event RegisterRequired();
 
     /// @dev Este evento se emite cuando se registra un nuevo usuario.
     /// @param user La dirección del nuevo usuario.
-    event UserRegistered(address user);
+    /// @param username El nombre del nuevo usuario.
+    event UserRegistered(address user, string username);
 
     /// Errores
 
@@ -93,10 +98,6 @@ contract GamesMiniverse {
     /// @param user El usuario que ha intentado acceder.
     error UserNotOwner(address user);
 
-    /// @dev Error al no encontrar un juego en la lista.
-    /// @param gameId El ID del juego buscado.
-    error GameNotFound(uint gameId);
-
     /// Funciones públicas
 
     /// @dev Permite a los usuarios comprar tokens con Matic.
@@ -105,42 +106,70 @@ contract GamesMiniverse {
         userReceive(10);
     }
 
-    /// @dev Se activa cuando un usuario gana un juego para recibir tokens según la puntuación.
-    /// @param _score La puntuación del usuario.
-    /// @param _gameId La id del juego ganado.
-    function winGame(uint _score, uint _gameId) public requireInList {
-        require(_score > 1, "La puntuacion debe ser mayor que 10");
-        Game memory playedGame = findGame(_gameId);
-        userReceive(_score / playedGame.prize);
+    /// @dev Permite a los usuarios iniciar un juego pagando tokens.
+    /// @param _id El id del juego iniciado
+    /// @param _price El precio del juego.
+    function startGame(int _id, uint _price) public requireInList {
+        userPay(_price);
+        emit GameStarted(_id, msg.sender);
     }
 
-    /// @dev Permite a los usuarios iniciar un juego pagando tokens.
-    /// @param _id La ID del juego que se va a iniciar.
-    function startGame(uint _id) public requireInList {
-        Game memory playedGame = findGame(_id);
-        userPay(playedGame.price);
-        emit GameStarted(playedGame.name, msg.sender);
+    /// @dev Se activa cuando un usuario gana un juego para recibir tokens según la puntuación.
+    /// @param _id El id del juego finalizado
+    /// @param _score La puntuación del usuario.
+    /// @param _prize El premio del juego.
+    function endGame(uint _id, uint _score,  uint _prize) public requireInList {
+        require(_score > 1, "La puntuacion debe ser mayor que 1");
+        userReceive(_score / _prize);
+        setNewScore(_id, _score, msg.sender);
+    }
+
+
+    function loginAttempt() public returns(User memory _user){
+        if(!findUser(msg.sender))
+        {
+            emit RegisterRequired();
+        }
+        else 
+        {
+            return userList[msg.sender];
+        }
     }
 
     /// @dev Permite a los nuevos usuarios registrarse y a su vez se les envía 10 tokens.
-    function registerNewUser() public {
+    /// @param _username El nombre de usuario para el registro
+    function registerNewUser(string memory _username) public {
         require(!findUser(msg.sender), "Usuario ya registrado");
         approveSpending(10);
         if (myToken.allowance(msg.sender, address(this)) < 1) revert NotApproved(msg.sender);
             userReceive(10);
-        userList.push(msg.sender);
-        emit UserRegistered(msg.sender);
+        userList[msg.sender] = User(new uint[](0), _username, new uint[](0));
+        emit UserRegistered(msg.sender, _username);
     }
 
-    /// @dev Permite consultar la lista de juegos
-    function gamesList() public view returns(Game[] memory) {
-        return gameList;
+    
+    function getGameScore(uint _id) public view returns(uint _score){
+        HighScore memory foundHighScore;
+        for (uint i = 0; i < userList[msg.sender].highScoreReferences.length; i ++) 
+        {
+            foundHighScore = highScoreList[userList[msg.sender].highScoreReferences[i]];
+            if(foundHighScore.id_game == _id)
+            {
+                return foundHighScore.score;
+            }
+        }
+        return 0;
     }
 
-    /// @dev Permite buscar el nombre de un juego por su id
-    /// @param _gameId La id del juego que se quiere buscar
-    function getGameName(uint _gameId) public view returns(string memory) {
-        return findGame(_gameId).name;
+    function addAchievement(uint _id) public{
+        for (uint i = 0; i < userList[msg.sender].achievements.length; i ++) 
+        {
+            if(userList[msg.sender].achievements[i] == _id)
+            {
+                return;
+            }
+        }
+        userList[msg.sender].achievements.push(_id);
     }
 
     /// @dev Permite a un usuario comprobar si está registrado o no.
@@ -150,20 +179,8 @@ contract GamesMiniverse {
     }
 
     /// @dev Permite ver el nombre del contrato, podría ser una variable pública pero quería incluir una función "pure".
-    function viewGameName() public pure returns(string memory) {
+    function viewContractName() public pure returns(string memory) {
         return contractName;
-    }
-
-    /// @dev Permite al propietario del contrato agregar un nuevo juego a la lista.
-    /// @param _name El nombre del juego.
-    /// @param _price El coste de jugar el juego.
-    function addGame(string memory _name, uint _price, uint _prize) public requireOwnership {
-        Game memory myGame;
-        myGame.name = _name;
-        myGame.price = _price;
-        myGame.prize = _prize;
-        myGame.id = gameList.length;
-        gameList.push(myGame);
     }
 
     /// Funciones privadas
@@ -186,25 +203,33 @@ contract GamesMiniverse {
         myToken.transfer(msg.sender, _value * 10 **myToken.decimals());
     }
 
+    function setNewScore(uint _game_id, uint _score, address _user) private{
+        bool found = false;
+        HighScore memory foundHighScore;
+        for (uint i = 0; i < userList[_user].highScoreReferences.length; i ++) 
+        {
+            foundHighScore = highScoreList[userList[_user].highScoreReferences[i]];
+            if(foundHighScore.id_game == _game_id)
+            {
+                found = true;
+                if(_score > foundHighScore.score)
+                {
+                    highScoreList[userList[_user].highScoreReferences[i]].score = _score;
+                }
+                break;
+            }
+        }
+        if(!found)
+        {
+            highScoreList.push(HighScore(_game_id, _score));
+            userList[_user].highScoreReferences.push(highScoreList.length);
+        }
+    }
+
     /// @dev Encuentra a un usuario en la lista de usuarios.
     /// @param _user La dirección del usuario.
     /// @return Si el usuario se encuentra en la lisya o no.
     function findUser(address _user) private view returns (bool) {
-        for (uint i = 0; i < userList.length; i++) {
-            if (userList[i] == _user) 
-                return true;
-        }
-        return false;
-    }
-
-    /// @dev Encuentra un juego en la lista de juegos por su ID.
-    /// @param _gameId El ID del juego a encontrar.
-    /// @return El juego encontrado.
-    function findGame(uint _gameId) private view returns (Game memory) {
-        for (uint i = 0; i < gameList.length; i++) {
-            if (gameList[i].id == _gameId) 
-                return gameList[i];
-        }
-        revert GameNotFound(_gameId);
+        return bytes(userList[_user].username).length > 0;
     }
 }

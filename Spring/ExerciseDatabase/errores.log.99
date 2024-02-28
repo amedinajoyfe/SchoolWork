@@ -1,0 +1,16 @@
+feb 25, 2024 12:57:50 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarError
+GRAVE: Error al procesar el registro: CSVRecord [comment='null', recordNumber=100, values=[99, establo, 104.0, 46]]
+feb 25, 2024 12:57:50 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarError
+GRAVE: Error al procesar el registro: CSVRecord [comment='null', recordNumber=101, values=[100, invernadero, 187.0, 63]]
+feb 25, 2024 5:17:56 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarError
+GRAVE: Error al procesar el registro: CSVRecord [comment='null', recordNumber=100, values=[99, establo, 104.0, 46]]
+feb 25, 2024 5:17:56 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarError
+GRAVE: Error al procesar el registro: CSVRecord [comment='null', recordNumber=101, values=[100, invernadero, 187.0, 63]]
+feb 25, 2024 5:21:24 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarError
+GRAVE: Error al procesar el registro: CSVRecord [comment='null', recordNumber=100, values=[99, establo, 104.0, 46]]
+feb 25, 2024 5:21:24 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarError
+GRAVE: Error al procesar el registro: CSVRecord [comment='null', recordNumber=101, values=[100, invernadero, 187.0, 63]]
+feb 25, 2024 5:57:02 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarError
+GRAVE: Error al procesar el registro: CSVRecord [comment='null', recordNumber=100, values=[99, establo, 104.0, 46]]
+feb 25, 2024 5:57:02 P. M. com.ejercicio.demo.util.CSVReaderUtil manejarError
+GRAVE: Error al procesar el registro: CSVRecord [comment='null', recordNumber=101, values=[100, invernadero, 187.0, 63]]
