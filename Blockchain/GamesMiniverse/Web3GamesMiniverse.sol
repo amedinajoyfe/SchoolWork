@@ -125,26 +125,19 @@ contract GamesMiniverse {
     }
 
 
-    function loginAttempt() public returns(User memory _user){
-        if(!findUser(msg.sender))
-        {
-            emit RegisterRequired();
-        }
-        else 
-        {
-            return userList[msg.sender];
-        }
+    function loginAttempt(address _user) public view returns(User memory){
+        return userList[_user];
     }
 
     /// @dev Permite a los nuevos usuarios registrarse y a su vez se les envía 10 tokens.
     /// @param _username El nombre de usuario para el registro
-    function registerNewUser(string memory _username) public {
-        require(!findUser(msg.sender), "Usuario ya registrado");
+    function registerNewUser(string memory _username, address _registeredUser) public {
+        require(!findUser(_registeredUser), "Usuario ya registrado");
         approveSpending(10);
-        if (myToken.allowance(msg.sender, address(this)) < 1) revert NotApproved(msg.sender);
+        if (myToken.allowance(_registeredUser, address(this)) < 1) revert NotApproved(_registeredUser);
             userReceive(10);
-        userList[msg.sender] = User(new uint[](0), _username, new uint[](0));
-        emit UserRegistered(msg.sender, _username);
+        userList[_registeredUser] = User(new uint[](0), _username, new uint[](0));
+        emit UserRegistered(_registeredUser, _username);
     }
 
     
@@ -229,7 +222,11 @@ contract GamesMiniverse {
     /// @dev Encuentra a un usuario en la lista de usuarios.
     /// @param _user La dirección del usuario.
     /// @return Si el usuario se encuentra en la lisya o no.
-    function findUser(address _user) private view returns (bool) {
+    function findUser(address _user) public view returns (bool) {
         return bytes(userList[_user].username).length > 0;
+    }
+
+    function findUserName(address _user) public view returns (string memory) {
+        return userList[_user].username;
     }
 }
