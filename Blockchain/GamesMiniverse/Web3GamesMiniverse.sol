@@ -24,18 +24,13 @@ contract GamesMiniverse {
 
     /// @dev Lista de usuarios registrados.
     mapping(address => User) private userList;
-    HighScore[] private highScoreList;
 
-    struct HighScore{
-        uint id_game;
-        uint score;
-    }
+    mapping(bytes32 => uint) private highScoreList;
 
     // Estructura para Usuarios
     struct User {
         uint[] achievements;
         string username;
-        uint[] highScoreReferences;
     }
 
     /// Constructor
@@ -124,45 +119,42 @@ contract GamesMiniverse {
         setNewScore(_id, _score, msg.sender);
     }
 
-
-    function loginAttempt(address _user) public view returns(User memory){
-        return userList[_user];
+    /// @dev Devuelve la información del usuario dependiendo de su cartera
+    function loginAttempt() public view returns(User memory){
+        return userList[msg.sender];
     }
 
     /// @dev Permite a los nuevos usuarios registrarse y a su vez se les envía 10 tokens.
     /// @param _username El nombre de usuario para el registro
-    function registerNewUser(string memory _username, address _registeredUser) public {
-        require(!findUser(_registeredUser), "Usuario ya registrado");
+    function registerNewUser(string memory _username) public {
+        require(!findUser(msg.sender), "Usuario ya registrado");
         approveSpending(10);
-        if (myToken.allowance(_registeredUser, address(this)) < 1) revert NotApproved(_registeredUser);
+        if (myToken.allowance(msg.sender, address(this)) < 1) revert NotApproved(msg.sender);
             userReceive(10);
-        userList[_registeredUser] = User(new uint[](0), _username, new uint[](0));
-        emit UserRegistered(_registeredUser, _username);
+        userList[msg.sender] = User(new uint[](0), _username);
+        emit UserRegistered(msg.sender, _username);
     }
 
-    
-    function getGameScore(uint _id) public view returns(uint _score){
-        HighScore memory foundHighScore;
-        for (uint i = 0; i < userList[msg.sender].highScoreReferences.length; i ++) 
-        {
-            foundHighScore = highScoreList[userList[msg.sender].highScoreReferences[i]];
-            if(foundHighScore.id_game == _id)
-            {
-                return foundHighScore.score;
-            }
-        }
-        return 0;
+    /// @dev Devuelve la puntuación más alta de un usuario en un juego
+    /// @param _id La id del juego
+    /// @param _user La dirección del usuario que se quiere buscar
+    function getGameScore(uint _id, address _user) public view returns(uint _score){
+        bytes32 key = keccak256(abi.encodePacked(_user, _id));
+        return highScoreList[key];
     }
 
-    function addAchievement(uint _id) public{
-        for (uint i = 0; i < userList[msg.sender].achievements.length; i ++) 
+    /// @dev Permite añadir un logro a un usuario
+    /// @param _id La id del logro que se va a añadir
+    /// @param _user El usuario al que se le añade el logro
+    function addAchievement(uint _id, address _user) public{
+        for (uint i = 0; i < userList[_user].achievements.length; i ++) 
         {
-            if(userList[msg.sender].achievements[i] == _id)
+            if(userList[_user].achievements[i] == _id)
             {
                 return;
             }
         }
-        userList[msg.sender].achievements.push(_id);
+        userList[_user].achievements.push(_id);
     }
 
     /// @dev Permite a un usuario comprobar si está registrado o no.
@@ -174,6 +166,12 @@ contract GamesMiniverse {
     /// @dev Permite ver el nombre del contrato, podría ser una variable pública pero quería incluir una función "pure".
     function viewContractName() public pure returns(string memory) {
         return contractName;
+    }
+
+    /// @dev Encuentra el nombre de un usuario.
+    /// @param _user El usuario cuyo nombre se quiere averiguar.
+    function findUserName(address _user) public view returns (string memory) {
+        return userList[_user].username;
     }
 
     /// Funciones privadas
@@ -196,37 +194,22 @@ contract GamesMiniverse {
         myToken.transfer(msg.sender, _value * 10 **myToken.decimals());
     }
 
+    /// @dev Asigna una puntuación nueva.
+    /// @param _game_id La id del juego cuya puntuación se ha obtenido.
+    /// @param _score La puntuación que ha logrado.
+    /// @param _user El usuario al que se le va a agregar la puntuación.
     function setNewScore(uint _game_id, uint _score, address _user) private{
-        bool found = false;
-        HighScore memory foundHighScore;
-        for (uint i = 0; i < userList[_user].highScoreReferences.length; i ++) 
+        bytes32 key = keccak256(abi.encodePacked(_user, _game_id));
+        if(_score > highScoreList[key])
         {
-            foundHighScore = highScoreList[userList[_user].highScoreReferences[i]];
-            if(foundHighScore.id_game == _game_id)
-            {
-                found = true;
-                if(_score > foundHighScore.score)
-                {
-                    highScoreList[userList[_user].highScoreReferences[i]].score = _score;
-                }
-                break;
-            }
-        }
-        if(!found)
-        {
-            highScoreList.push(HighScore(_game_id, _score));
-            userList[_user].highScoreReferences.push(highScoreList.length);
+            highScoreList[key] = _score;
         }
     }
 
     /// @dev Encuentra a un usuario en la lista de usuarios.
     /// @param _user La dirección del usuario.
     /// @return Si el usuario se encuentra en la lisya o no.
-    function findUser(address _user) public view returns (bool) {
+    function findUser(address _user) private view returns (bool) {
         return bytes(userList[_user].username).length > 0;
-    }
-
-    function findUserName(address _user) public view returns (string memory) {
-        return userList[_user].username;
     }
 }
